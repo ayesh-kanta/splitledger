@@ -7,8 +7,8 @@ import Spinner from '../ui/Spinner';
 
 export default function LoginPage() {
   const { logIn, googleSignIn } = useAuth();
-  const [email, setEmail]     = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('ayeshkantadas@gmail.com');
+  const [password, setPassword] = useState('Mamata@2004');
   const [loading, setLoading] = useState(false);
   const [gLoading, setGLoading] = useState(false);
 
