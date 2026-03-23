@@ -38,12 +38,23 @@ export function AuthProvider({ children }) {
 
   // ── Auth state listener ─────────────────────────────────────────────────────
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-      setLoading(false);
-    });
-    return unsub;
-  }, []);
+  const unsub = onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      try {
+        await signInWithEmailAndPassword(
+          auth,
+          'ayeshkantadas@gmail.com',
+          'Mamata@2004'
+        );
+      } catch (err) {
+        console.error('Auto login failed', err);
+      }
+    }
+    setCurrentUser(user);
+    setLoading(false);
+  });
+  return unsub;
+}, []);
 
   const value = { currentUser, loading, signUp, logIn, googleSignIn, logOut };
 
